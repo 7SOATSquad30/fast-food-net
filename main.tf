@@ -1,3 +1,15 @@
+provider "aws" {
+  region = var.aws_region
+}
+
+terraform {
+  backend "s3" {
+    bucket = "aws-fastfood-terraform-tfstate"
+    key    = "fast-food-net/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
 # Criar a VPC
 resource "aws_vpc" "main" {
   cidr_block = var.vpc_cidr
