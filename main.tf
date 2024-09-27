@@ -1,6 +1,5 @@
 # Criar a VPC
 resource "aws_vpc" "main" {
-  description = "VPC para os serviços da aplicação fastfodd"
   cidr_block = var.vpc_cidr
   tags = {
     Name = "fastfood-vpc"
