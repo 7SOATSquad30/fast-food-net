@@ -1,3 +1,9 @@
+variable "aws_region" {
+  description = "Região da AWS"
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "availability_zone_1" {
   description = "Zona de disponibilidade para a primeira Subnet"
   type        = string
