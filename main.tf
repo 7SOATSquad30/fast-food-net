@@ -101,7 +101,7 @@ resource "aws_route_table" "private_route_table" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id  = aws_nat_gateway.nat.id
+    gateway_id  = aws_nat_gateway.nat.id
   }
 
   tags = {
@@ -166,6 +166,13 @@ resource "aws_security_group" "default_security_group" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  egress {
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"  # -1 means all protocols
+  cidr_blocks = ["0.0.0.0/0"]  # Allow all outbound traffic
+}
 
   tags = {
     Name = "default_security_group"
