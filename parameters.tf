@@ -23,3 +23,9 @@ resource "aws_ssm_parameter" "subnet_3" {
   type  = "String"
   value = aws_subnet.subnet_3.id
 }
+
+resource "aws_ssm_parameter" "default_security_group" {
+  name  = "default_security_group_id"
+  type  = "String"
+  value = aws_security_group.default_security_group.id
+}
