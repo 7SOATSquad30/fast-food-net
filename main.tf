@@ -170,8 +170,8 @@ resource "aws_security_group" "default_security_group" {
   egress {
   from_port   = 0
   to_port     = 0
-  protocol    = "-1"  # -1 means all protocols
-  cidr_blocks = ["0.0.0.0/0"]  # Allow all outbound traffic
+  protocol    = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
 }
 
   tags = {
