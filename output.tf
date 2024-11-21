@@ -18,7 +18,7 @@ output "subnet_3_id" {
   value       = aws_subnet.subnet_3.id
 }
 
-output "default_security_group" {
+output "cluster_security_group" {
   description = "ID do grupo de segurança"
-  value       = aws_security_group.default_security_group.id
+  value       = aws_security_group.cluster_security_group.id
 }

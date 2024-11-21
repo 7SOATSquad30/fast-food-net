@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "aws-fastfood-terraform-tfstate"
+    bucket = "aws-fastfood-fiap-terraform-tfstate"
     key    = "fast-food-net/terraform.tfstate"
     region = "us-east-1"
   }
@@ -54,6 +54,36 @@ resource "aws_subnet" "subnet_4_public" {
 
   tags = {
     Name = "subnet-4-public"
+  }
+}
+
+resource "aws_security_group" "cluster_security_group" {
+  name        = "cluster-security-group"
+  description = "Security group for cluster"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description      = "Allow HTTP traffic"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"] # allow all
+  }
+
+  ingress {
+    description      = "Allow HTTPS traffic"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"] # allow all
+  }
+
+  egress {
+    description      = "Allow all outbound traffic"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1" # all protocols
+    cidr_blocks      = ["0.0.0.0/0"] # allow all
   }
 }
 
